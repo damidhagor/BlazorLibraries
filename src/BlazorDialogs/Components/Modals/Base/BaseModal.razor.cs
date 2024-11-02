@@ -90,7 +90,7 @@ public abstract class BaseModal<TContext, TResult>(IJSRuntime jsRuntime) : Compo
         {
             _jsModule = await _jsRuntime.InvokeAsync<IJSObjectReference>(
                 "import",
-                "./Components/Modals/Base/BaseModal.razor.js");
+                "./_content/BlazorDialogs/Components/Modals/Base/BaseModal.razor.js");
 
             _modalReference = DotNetObjectReference.Create(this);
 
