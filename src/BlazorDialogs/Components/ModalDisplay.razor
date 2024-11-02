@@ -1,0 +1,4 @@
+﻿@foreach (var (context, parameters) in _modals)
+{
+    <DynamicComponent Type="context.ModalType" Parameters="parameters" />
+}

@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+	<PropertyGroup>
+		<TargetFramework>net9.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<AdditionalFileItemNames>$(AdditionalFileItemNames);EmbeddedResource</AdditionalFileItemNames>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<SupportedPlatform Include="browser" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="9.0.0-rc.2.24474.3" />
+		<PackageReference Include="Microsoft.Extensions.Localization" Version="9.0.0-rc.2.24474.3" />
+		<PackageReference Include="OneOf" Version="3.0.271" />
+		<PackageReference Include="OneOf.SourceGenerator" Version="3.0.271" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Folder Include="wwwroot\" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\BlazorSourceGeneration\BlazorSourceGeneration.csproj" ReferenceOutputAssembly="false" OutputItemType="Analyzer" />
+	</ItemGroup>
+
+</Project>
