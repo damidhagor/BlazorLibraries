@@ -74,7 +74,7 @@ public abstract class BaseModal<TContext, TResult>(IJSRuntime jsRuntime) : Compo
 
             await _modalTransitioningTCS.Task;
 
-            await OnClosed.InvokeAsync(Context);
+            await InvokeAsync(() => OnClosed.InvokeAsync(Context));
 
             Context.SetResult(result);
         }
