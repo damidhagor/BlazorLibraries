@@ -13,8 +13,7 @@ public sealed partial class ModalDisplay(IModalService modalService) : IDisposab
             new Dictionary<string, object>()
             {
                 { nameof(BaseModal<BaseModalContext<IModalContext>, IModalContext>.Context), modalContext },
-                { nameof(BaseModal<BaseModalContext<IModalContext>, IModalContext>.AutoShow), true },
-                { nameof(BaseModal<BaseModalContext<IModalContext>, IModalContext>.OnHidden), EventCallback.Factory.Create<T>(this, (context) => RemoveModal(context)) }
+                { nameof(BaseModal<BaseModalContext<IModalContext>, IModalContext>.OnClosed), EventCallback.Factory.Create<T>(this, (context) => RemoveModal(context)) }
             }));
 
         await InvokeAsync(StateHasChanged);
@@ -28,13 +27,7 @@ public sealed partial class ModalDisplay(IModalService modalService) : IDisposab
         }
     }
 
-    protected override void OnParametersSet()
-    {
-        _modalService.RegisterModalDisplay(this);
-    }
+    protected override void OnInitialized() => _modalService.RegisterModalDisplay(this);
 
-    public void Dispose()
-    {
-        _modalService.UnregisterModalDisplay(this);
-    }
+    public void Dispose() => _modalService.UnregisterModalDisplay(this);
 }

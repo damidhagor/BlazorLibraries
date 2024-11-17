@@ -17,25 +17,16 @@ public sealed partial class TextInputModal(IJSRuntime jsRuntime)
         base.OnParametersSet();
     }
 
-    public override async Task OnModalShown()
-    {
-        await _input.FocusAsync();
-    }
+    protected override async Task OnModalShown() => await _input.FocusAsync();
 
-    private async Task OnConfirm()
-    {
-        Context.SetResult(new TextInput(_text));
-        await Hide();
-    }
+    private async Task OnConfirm() => await Close(new TextInput(_text));
 
     private async Task OnKeyDown(KeyboardEventArgs e)
     {
-        if (e.Code is "Enter" or "NumpadEnter")
+        if (e.Code is "Enter" or "NumpadEnter"
+            && !_isConfirmButtonDisabled)
         {
-            if (!_isConfirmButtonDisabled)
-            {
-                await OnConfirm();
-            }
+            await OnConfirm();
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace BlazorDialogs.Models.Contexts;
+namespace BlazorDialogs.Models.Contexts;
 
 public abstract record BaseModalContext<T> : IModalContext
 {

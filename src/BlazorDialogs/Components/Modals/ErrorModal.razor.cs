@@ -11,16 +11,9 @@ public sealed partial class ErrorModal(IJSRuntime jsRuntime)
 
     private string _confirmText => Context.ConfirmText ?? _localization.OK;
 
-    public override async Task OnModalShown()
-    {
-        await _confirmButton.FocusAsync();
-    }
+    protected override async Task OnModalShown() => await _confirmButton.FocusAsync();
 
-    private async Task OnConfirm()
-    {
-        Context.SetResult(new None());
-        await Hide();
-    }
+    private async Task OnConfirm() => await Close(new None());
 
     private async Task CopyExceptionDetails()
     {

@@ -1,4 +1,4 @@
-﻿namespace BlazorDialogs.Services;
+namespace BlazorDialogs.Services;
 
 internal sealed class ModalService : IModalService
 {
@@ -31,7 +31,7 @@ internal sealed class ModalService : IModalService
     {
         lock (_lock)
         {
-            if (_modalDisplay is not null)
+            if (_modalDisplay is not null && _modalDisplay != modalDisplay)
             {
                 throw new InvalidOperationException("A ModalDisplayComponent is already registered.");
             }

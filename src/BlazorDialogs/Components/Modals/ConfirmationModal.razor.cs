@@ -10,20 +10,9 @@ public sealed partial class ConfirmationModal(IJSRuntime jsRuntime)
 
     private string _cancelText => Context.CancelText ?? _localization.Cancel;
 
-    public override async Task OnModalShown()
-    {
-        await _confirmButton.FocusAsync();
-    }
+    protected override async Task OnModalShown() => await _confirmButton.FocusAsync();
 
-    private async Task OnConfirm()
-    {
-        Context.SetResult(new Confirmed());
-        await Hide();
-    }
+    private async Task OnConfirm() => await Close(new Confirmed());
 
-    private async Task OnCancel()
-    {
-        Context.SetResult(new Cancelled());
-        await Hide();
-    }
+    private async Task OnCancel() => await Close(new Cancelled());
 }
